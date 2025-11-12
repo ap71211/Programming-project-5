@@ -4,8 +4,6 @@
 // Implement input validation for starting size, daily increase, and days.
 
 #include <iostream>
-#include <string>
-#include <fstream>
 
 using namespace std;
 
@@ -13,46 +11,27 @@ using namespace std;
 
 int main()
 {
-	string filename;
-	string townName;
-	ifstream inputFile;
-	int population;
-	int year = 1900;
-	const int INTERVAL = 20;
+	const int ROW = 10;
 
-	cout <<  "Enter the name of the file: ";
-	cin >> filename;
-	cout << "Enter the name of the town: ";
-	cin.ignore();
-	getline(cin, townName);
+	cout << "Pattern A\tPattern B\n";
 
-		inputFile.open(filename);
-
-	if (!inputFile)
+	for (int row = 1; row <= ROW; row++)
 	{
-		cout << "Error: Can not open file " << filename << endl;
-		return 1;
-
-
-	}
-
-	cout << "\n" << townName << " Population Growth" << endl;
-	cout << "(each * represents 1,000 people)\n" << endl;
-
-	while (inputFile >> population)
-	{
-		cout << year << " ";
-		for (int i = 0; i < population / 1000; i++)
+		for (int col = 1; col <= row; col++)
 		{
-			cout << "*";
+			cout << "+";
+
 
 		}
+		cout << "\t";
+
+		for (int col = ROW; col >= row; col--)
+		{
+			cout << "+";
+		}
 		cout << endl;
-		year += INTERVAL; 
 
 	}
-	inputFile.close();
-
 	return 0;
 
 
