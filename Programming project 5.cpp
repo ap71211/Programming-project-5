@@ -1,7 +1,6 @@
-// Programming project 5.cpp : This file contains the 'main' function for the whole project. 
-// Program 1: Use loops to model repeated population growth across multiple days.
-// Apply arithmetic calculations involving percentages.
-// Implement input validation for starting size, daily increase, and days.
+// Programming project 
+// Program 3: Holds the population bar chart where you need to input the correct file name to access the file.
+// As well as calculate the population growth
 
 #include <iostream>
 #include <string>
