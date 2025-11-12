@@ -1,7 +1,5 @@
-// Programming project 5.cpp : This file contains the 'main' function for the whole project. 
-// Program 1: Use loops to model repeated population growth across multiple days.
-// Apply arithmetic calculations involving percentages.
-// Implement input validation for starting size, daily increase, and days.
+// Programming project 5.cpp 
+// Program 4: Holds the pattern program where you use a loop to make a pattern.  
 
 #include <iostream>
 
