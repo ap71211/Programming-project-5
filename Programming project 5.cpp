@@ -1,52 +1,63 @@
-// Programming project 5.cpp : This file contains the 'main' function for the whole project. 
-// Program 1: Use loops to model repeated population growth across multiple days.
-// Apply arithmetic calculations involving percentages.
-// Implement input validation for starting size, daily increase, and days.
+// Program 2: Student Lineup
+// Write a program that reads a list of student names from a text file and determines
+// the first and last names in alphabetical order. The program should also count
+// the total number of students in the list. Assume that each name is a single word
 
 #include <iostream>
-#include <iomanip>
+#include <fstream>
+#include <string>
+
 using namespace std;
 
 
 
 int main()
 {
-	double startingSize;
-	double dailyIncrease;
-	int days;
+	ifstream inputFile;
+	string name;
+	string firstStudent;
+	string lastStudent;
+	int count = 0;
 
-	cout << "Enter the number of organisms: ";
-	cin >> startingSize;
-	while (startingSize < 2)
+	inputFile.open("LineUp.txt");
+
+	if (!inputFile)
 	{
-		cout << "Invalid input. Please enter a number greater than or equal to 2: ";
-		cin >> startingSize;
-	}
-	cout << "Enter the averave daily increase (as a percentage): ";
-	cin >> dailyIncrease;
-	while (dailyIncrease < 0)
-	{
-		cout << "Invalid input. Please enter a non-negative percentage: ";
-		cin >> dailyIncrease;
-	}
-	cout << "Enter the number of days that they will multiply: ";
-	cin >> days;
-	while (days < 1)
-	{
-		cout << "Invalid input. Please enter a number greater than or equal to 1: ";
-		cin >> days;
+		cout << "Error could not open file." << endl;
+		return 1;
 	}
 
-	cout << fixed << setprecision(2);
-	cout << "\nDay\tPopulation Size\n";
-	cout << "\n";
-
-		double populationSize = startingSize;
-	for (int day = 1; day <= days; day++)
+	if (inputFile >> name)
 	{
-		cout << day << "\t" << populationSize << "\n";
-		populationSize += populationSize * (dailyIncrease / 100);
+		firstStudent = name;
+		lastStudent = name;
+		count = 1;
+		
 	}
+	else {
+		cout << "Error: File is empty. " << endl;
+		return 1;
+	}
+	while (inputFile >> name)
+	{
+		count++;
+		if (name < firstStudent)
+		{
+			firstStudent = name;
+
+		}
+		if (name > lastStudent)
+		{
+			lastStudent = name; 
+
+		}
+
+	}
+	inputFile.close();
+		cout << "Number of studnets: " << count << endl;
+		cout << "First student alphabetically: " << firstStudent << endl;
+		cout << "Last student alphabetically: " << lastStudent << endl;
+
 	return 0;
 
 }
