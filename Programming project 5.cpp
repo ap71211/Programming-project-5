@@ -4,50 +4,57 @@
 // Implement input validation for starting size, daily increase, and days.
 
 #include <iostream>
-#include <iomanip>
+#include <string>
+#include <fstream>
+
 using namespace std;
 
 
 
 int main()
 {
-	double startingSize;
-	double dailyIncrease;
-	int days;
+	string filename;
+	string townName;
+	ifstream inputFile;
+	int population;
+	int year = 1900;
+	const int INTERVAL = 20;
 
-	cout << "Enter the number of organisms: ";
-	cin >> startingSize;
-	while (startingSize < 2)
+	cout <<  "Enter the name of the file: ";
+	cin >> filename;
+	cout << "Enter the name of the town: ";
+	cin.ignore();
+	getline(cin, townName);
+
+		inputFile.open(filename);
+
+	if (!inputFile)
 	{
-		cout << "Invalid input. Please enter a number greater than or equal to 2: ";
-		cin >> startingSize;
-	}
-	cout << "Enter the averave daily increase (as a percentage): ";
-	cin >> dailyIncrease;
-	while (dailyIncrease < 0)
-	{
-		cout << "Invalid input. Please enter a non-negative percentage: ";
-		cin >> dailyIncrease;
-	}
-	cout << "Enter the number of days that they will multiply: ";
-	cin >> days;
-	while (days < 1)
-	{
-		cout << "Invalid input. Please enter a number greater than or equal to 1: ";
-		cin >> days;
+		cout << "Error: Can not open file " << filename << endl;
+		return 1;
+
+
 	}
 
-	cout << fixed << setprecision(2);
-	cout << "\nDay\tPopulation Size\n";
-	cout << "\n";
+	cout << "\n" << townName << " Population Growth" << endl;
+	cout << "(each * represents 1,000 people)\n" << endl;
 
-		double populationSize = startingSize;
-	for (int day = 1; day <= days; day++)
+	while (inputFile >> population)
 	{
-		cout << day << "\t" << populationSize << "\n";
-		populationSize += populationSize * (dailyIncrease / 100);
+		cout << year << " ";
+		for (int i = 0; i < population / 1000; i++)
+		{
+			cout << "*";
+
+		}
+		cout << endl;
+		year += INTERVAL; 
+
 	}
+	inputFile.close();
+
 	return 0;
+
 
 }
 
