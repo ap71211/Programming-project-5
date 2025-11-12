@@ -1,9 +1,10 @@
 // Programming project 5.cpp : This file contains the 'main' function for the whole project. 
-// Program 1: Use loops to model repeated population growth across multiple days.
-// Apply arithmetic calculations involving percentages.
-// Implement input validation for starting size, daily increase, and days.
+// Program 5: Houses the random number game where you use the random number generator to guess the right number
 
 #include <iostream>
+#include <cstdlib>
+#include <ctime> 
+
 
 using namespace std;
 
@@ -11,29 +12,42 @@ using namespace std;
 
 int main()
 {
-	const int ROW = 10;
+    int randomNumber;
+    int guess;
+    int attempts = 0;
 
-	cout << "Pattern A\tPattern B\n";
+    srand(static_cast<unsigned int>(time(0)));
 
-	for (int row = 1; row <= ROW; row++)
-	{
-		for (int col = 1; col <= row; col++)
-		{
-			cout << "+";
+    randomNumber = rand() % 100 + 1;
+
+    cout << " Hello and welcome to my number guessing game !" << endl;
+    cout << "I am thinking of a number that it between 1-100. Try and guess it in as few tries as possible." << endl;
+    cout << endl;
 
 
-		}
-		cout << "\t";
+    do 
+    {
+        cout << "Enter your number: ";
+        cin >> guess;
+        attempts++;
 
-		for (int col = ROW; col >= row; col--)
-		{
-			cout << "+";
-		}
-		cout << endl;
+        if (guess > randomNumber) 
+        {
+            cout << "Too high, try again." << endl;
+        }
+        else if (guess < randomNumber)
+        {
+            cout << "Too low, try again." << endl;
+        }
+        else 
+        {
+            cout << "Correct! You guessed the right number in "
+                << attempts << " attempts." << endl;
+        }
 
-	}
-	return 0;
+    } while (guess != randomNumber);
 
+    return 0;
 
 }
 
